@@ -1,36 +1,32 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
-import Input from './input';
+import Input from "./input";
 
 class Card extends Component {
     
-    constructor(){
+    constructor() {
         super()
 
         this.state = {
-            color: "BLUE",
+            color: " ",
             pluralNoun: " "
         }
+
+
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    handleInputChange(){
-        this.setState({color: "red"})
+    handleInputChange(event) {
+       this.setState({ [event.target.name]: event.target.value })
+    
     }
     
-    render(){
-        
-        return(
-            <div>
-                <h1>{this.state.color}</h1>
-                <input/>
-            </div>
-        )
-
+    render() {
         return (
-            <div className='card'>
+            <div className="card">
                 <h1>{this.state.color}</h1>
-                { Input('Color') }
-                { Input('Plural Noun')}
+                { Input("Color", this.state.color, this.handleInputChange, "color" )}
+                { Input("Plural Noun", this.state.pluralNoun, this.handleInputChange, "pluralNoun")}
             </div>
         )
                 
